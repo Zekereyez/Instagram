@@ -78,6 +78,9 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                             </button>
+                            <connections>
+                                <action selector="didTapLogout:" destination="h28-s1-DzO" id="hOy-NN-xsZ"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" landscapeImage="insta_camera_btn" largeContentSizeImage="insta_camera_btn" style="plain" id="gmM-iy-GO4">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dpz-XE-U6H">
@@ -86,6 +89,9 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="insta_camera_btn" title=""/>
                             </button>
+                            <connections>
+                                <action selector="didTapCompose:" destination="h28-s1-DzO" id="eVs-aY-BTp"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -115,7 +121,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eeC-U5-Cmi">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sl4-QR-mBY" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeFeedViewController" automaticallyAdjustsScrollViewInsets="NO" id="sl4-QR-mBY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I6m-Qt-Vz0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -133,7 +139,7 @@
         <!--Navigation Controller-->
         <scene sceneID="TnS-Ct-GMR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J3o-iX-CcW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ComposeViewController" automaticallyAdjustsScrollViewInsets="NO" id="J3o-iX-CcW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HAk-dg-U91">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>

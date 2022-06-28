@@ -16,6 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(  NSDictionary *)launchOptions {
 
+    // Code to initialize Parse
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
 
         configuration.applicationId = @"prYBJNGaNG9JsZLUQLnhaSmfRA3vwHstI0sVKmCX"; // <- UPDATE

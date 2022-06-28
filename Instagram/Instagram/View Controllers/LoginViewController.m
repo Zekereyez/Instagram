@@ -40,7 +40,7 @@
             NSLog(@"User registered successfully");
             
             // manually segue to logged in view
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"main" bundle:nil];
 //            HomeFeedViewController *feedVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
 //            self.view.window.rootViewController = feedVC;
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
@@ -63,7 +63,7 @@
             NSLog(@"User logged in successfully");
             
             // display view controller that needs to shown after successful login
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"main" bundle:nil];
 //            HomeFeedViewController *feedVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
 //            self.view.window.rootViewController = feedVC;
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
@@ -105,8 +105,8 @@
     }
     
     else if ([self.usernameField.text isEqual:@""]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Email Required"
-                                                                                   message:@"Please Enter Your Email"
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Username Required"
+                                                                                   message:@"Please Enter Your Username"
                                                                             preferredStyle:(UIAlertControllerStyleAlert)];
         
         // create an OK action
