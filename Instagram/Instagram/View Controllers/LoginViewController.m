@@ -27,8 +27,12 @@
     newUser.username = self.usernameField.text;
     // newUser.email = self.emailField.text;
     newUser.password = self.passwordField.text;
+
+    if([self fieldsAreInvalid]) {
+        [self alert];
+        return;
+    }
     
-    [self alert];
     
     // call sign up function on the object
     // signs up the user asynchronously, will
@@ -48,13 +52,19 @@
     }];
 }
 
-
+-(BOOL)fieldsAreInvalid {
+    return ([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""]);
+}
 
 - (void)loginUser {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
     
-    [self alert];
+    if([self fieldsAreInvalid]) {
+        [self alert];
+        return;
+    }
+    
         
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
@@ -120,13 +130,6 @@
         [self presentViewController:alert animated:YES completion:^{}];
     }
 }
-
-
-
-
-
-
-
 
 #pragma mark - Navigation
 
