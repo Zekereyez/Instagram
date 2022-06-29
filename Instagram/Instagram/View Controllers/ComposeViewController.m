@@ -16,14 +16,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 //    UITapGestureRecognizer *imageTapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getPhoto:)];
 //    [imageTapped setDelegate:self];
 //    [self.composeImage addGestureRecognizer:imageTapped];
 }
 - (IBAction)didTapCancel:(id)sender {
-    [self performSegueWithIdentifier:@"HomeFeedViewController" sender:nil];
+    // Manually perform segue
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
+    self.view.window.rootViewController = vc;
 }
 - (IBAction)didTapShare:(id)sender {
+    [Post postUserImage:self.composeImage.image withCaption:self.caption.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        // If no error posting to parse user will receive a success alert
+        // and a segue back to the timeline post feed
+        if (error == nil) {
+            // maybe only make the alert when something fails... better ux
+            // [self successAlert];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
+            self.view.window.rootViewController = vc;
+        }
+        else {
+            [self failedAlert];
+            
+        }
+    }];
 }
 - (IBAction)showPhotoPicker:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -87,14 +106,44 @@
     return newImage;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)successAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"YAY 🕺🏽"
+                                                                               message:@"Post was successful"
+                                                                        preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    // create an OK action
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK!"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle response here.
+                                                     }];
+    // add the OK action to the alert controller
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:^{}];
 }
-*/
+
+- (void)failedAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Failed to Post"
+                                                                               message:@"Please Try Again"
+                                                                        preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    // create an OK action
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle response here.
+                                                     }];
+    // add the OK action to the alert controller
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:^{}];
+}
+
+//- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+//    <#code#>
+//}
+//
+//- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return self.arrayOfPosts.count;
+//}
 
 @end
