@@ -60,9 +60,20 @@
     [self performSegueWithIdentifier:@"composeSegue" sender:nil];
 }
 
+
+// TODO: Fix logout
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         
+        if (error) {
+            NSLog(@"Unable to log out of instagram");
+        }
+        
+        if (!error) {
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+                    self.view.window.rootViewController = loginViewController;
+        }
     }];
 }
 

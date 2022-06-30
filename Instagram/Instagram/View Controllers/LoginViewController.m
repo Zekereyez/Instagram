@@ -72,11 +72,14 @@
         } else {
             NSLog(@"User logged in successfully");
             
-            // display view controller that needs to shown after successful login
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"main" bundle:nil];
-//            HomeFeedViewController *feedVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
-//            self.view.window.rootViewController = feedVC;
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            // Display view controller that needs to shown after successful login
+            // Manual segue is better since we are able to use the pull refresh
+            // rather than having to run the app again once logged in
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            HomeFeedViewController *feedVC = [storyboard instantiateViewControllerWithIdentifier:@"HomeFeedViewController"];
+            self.view.window.rootViewController = feedVC;
+            // Another way to segue: use with a segue identifier
+            // [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];
 }

@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProfileViewController : UICollectionViewController
+@interface ProfileViewController : UIViewController
 
 @end
 

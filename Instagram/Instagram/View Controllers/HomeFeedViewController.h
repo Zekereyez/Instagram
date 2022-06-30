@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "Post.h"
 #import "PostCell.h"
+#import "LoginViewController.h""
 
 NS_ASSUME_NONNULL_BEGIN
 
