@@ -27,6 +27,13 @@
     NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:self.post.image.url]];
     self.detailsImage.image = [UIImage imageWithData:imageData];
     self.detailsCaption.text = self.post.caption;
+    self.detailsCaption.text = [NSString stringWithFormat:@"%@ %@", self.post.author.username, self.post.caption];
+    
+    NSMutableAttributedString *postText = [[NSMutableAttributedString alloc] initWithString:self.detailsCaption.text];
+//    NSRange boldRange = [self.detailsCaption.text rangeOfString:self.post.author.username];
+//    [postText addAttribute: NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:boldRange];
+    [self.detailsCaption setAttributedText: postText];
+    
     [self postDate];
 }
 
@@ -76,7 +83,7 @@
         formatter2.allowedUnits = NSCalendarUnitSecond;
     }
     NSString *elapsed = [formatter2 stringFromDate:date toDate:[NSDate date]];
-    self.detailsPostDate.text = elapsed;
+    self.detailsPostDate.text = [NSString stringWithFormat:@"%@%@", elapsed, @" ago"];
 }
 
 /*

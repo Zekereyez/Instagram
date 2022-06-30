@@ -111,4 +111,25 @@
 }
 
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // this checks if the segue is the details segue when a segue is triggered
+    // if it is, we need to do work before the details segue is completed to fill data
+    if([segue.identifier isEqualToString:@"detailsSegue"]) {
+        // We know that when triggered the sender will be a postcell
+        PostCell *cell = sender;
+        // each post tableview has an indexpath and we call this method on the
+        // cell to extract the the index path from the tableview cell
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        // we create a post object that holds the number of which the cell
+        // corresponds to in the array of posts which holds the posts
+        Post *post = self.arrayOfPosts[indexPath.row];
+        // we create a reference of details vc to prepare and fill data
+        // since we have a post property within of details vc we can assign our
+        // post to the details post to have that data when seguing
+        DetailsViewController *detailsVC = segue.destinationViewController;
+        detailsVC.post = post;
+//        detailsVC.post =
+    }
+}
+
 @end
