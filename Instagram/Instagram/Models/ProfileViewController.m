@@ -36,7 +36,6 @@ static NSString * const reuseIdentifier = @"Cell";
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -50,6 +49,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #warning Incomplete implementation, return the number of items
     return 0;
 }
+ */
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
